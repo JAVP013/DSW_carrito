@@ -17,12 +17,22 @@ const startServer = async () => {
   const server = new ApolloServer({
     typeDefs: [userTypeDefs, productTypeDefs, carritoTypeDefs],
     resolvers: [userResolvers, productResolvers, carritoResolvers],
-    cors: {
-      origin: '*', // O restringe a dominios específicos
-      methods: ['GET', 'POST'],
-    }
+    introspection: true, // Permite que el esquema sea consultado en producción
+    playground: true, // Activa la consola en producción (Apollo Studio)
   });
-    
+
+  app.use((req, res, next) => {
+    const allowedOrigins = ['https://carrito-d53913b23d26.herokuapp.com'];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+  });
+
+
     const PORT = process.env.PORT || 4000;
 
     server.listen(PORT, () => {
