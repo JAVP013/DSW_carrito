@@ -4,8 +4,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "node src/index.js",
-     "build": "tsc -p . && ncp src/schema.graphql dist/schema.graphql"
+    "start": "node src/index.js",
+    "build": "tsc -p . && ncp src/schema.graphql dist/schema.graphql"
   },
   "keywords": [],
   "author": "",
@@ -28,5 +28,8 @@
     "punycode": "^2.3.1",
     "readline-sync": "^1.4.10",
     "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
   }
 }
