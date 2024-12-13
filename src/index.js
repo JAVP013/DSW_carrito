@@ -30,6 +30,8 @@ const startServer = async () => {
     cors: {
       origin: 'https://carrito-d53913b23d26.herokuapp.com', // Permitir solo esta URL
       credentials: true,
+      introspection: true,
+      playground: true
     },
   });
 
